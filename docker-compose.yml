@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - "8300:3000"
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - web
+    links:
+      - web
+    volumes:
+      - "/Users/jiayu/Desktop/learn_nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+    ports:
+      - "8080:80"
+      - "8443:443"
